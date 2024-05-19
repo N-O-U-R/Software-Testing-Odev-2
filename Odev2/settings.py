@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Odev2',
     'accounts',
     'industry',
     'blog',
@@ -80,11 +81,11 @@ WSGI_APPLICATION = 'Odev2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
-        'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': 'db',
-        'PORT': '5432',
+        'NAME': 'mydb',  # Your database name
+        'USER': 'postgres',  # Your database username
+        'PASSWORD': '123',  # Your database password
+        'HOST': 'db',  # Should match the service name in docker-compose.yml
+        'PORT': '5432',  # Default PostgreSQL port
     }
 }
 

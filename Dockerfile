@@ -18,3 +18,5 @@ RUN chmod +x entrypoint.sh
 COPY . .
 
 ENTRYPOINT [ "sh", "entrypoint.sh" ]
+
+CMD ["python", "-m", "tests.test_suite"]

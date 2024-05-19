@@ -8,8 +8,12 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    links:
-      - db:db
+    environment:
+      - DJANGO_SETTINGS_MODULE=Odev2.settings
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=mydb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
     networks:
       - djangonetwork
 
@@ -19,7 +23,6 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_HOST=db
       - POSTGRES_DB=mydb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123

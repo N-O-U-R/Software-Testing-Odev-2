@@ -28,7 +28,7 @@ def register(request):
             login(request, user)
             return redirect('home')  # Redirect after registration
         except Exception as e:
-            return render(request, 'index.html', {'register_error': str(e)})
+            return render(request, 'index.html', {'register_error': 'Email already exists'})
     return render(request, 'index.html')
 
 def logout_view(request):
