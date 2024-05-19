@@ -1,0 +1,88 @@
+<!-- templates/industries.html -->
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Industries{% endblock %}
+
+{% block content %}
+<section class="page-title page-title-layout7 bg-overlay bg-overlay-gradient bg-parallax">
+  <div class="bg-img"><img src="{% static 'images/page-titles/10.jpg' %}" alt="background"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
+        <span class="pagetitle__subheading">Keep Your Business Safe & Ensure High Availability.</span>
+        <h1 class="pagetitle__heading mb-30">Consultative Approach On Emerging Technology!.</h1>
+        <div class="d-flex align-items-center">
+          <a href="{% url 'home' %}" class="btn btn__white mr-30">
+            <span>Get Started</span> <i class="fas fa-arrow-right"></i>
+          </a>
+          <a class="video__btn video__btn-white popup-video" href="https://www.youtube.com/watch?v=nrJtHemSPW4">
+            <div class="video__player">
+              <i class="fa fa-play"></i>
+            </div>
+          </a>
+        </div>
+      </div><!-- /.col-xl-6 -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+</section><!-- /.page-title -->
+
+<section class="services-layout2 pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-3">
+        <div class="heading text-center mb-50">
+          <h2 class="heading__subtitle">Nationwide Service, Local Expertise</h2>
+          <h3 class="heading__title">Offer The Latest Software And Solutions To Our customers!</h3>
+        </div><!-- /.heading -->
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    <div class="row">
+      {% for industry in page_obj %}
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="service-item">
+          <div class="service__img">
+            <img src="{{ industry.image.url }}" alt="{{ industry.title }}" loading="lazy">
+          </div><!-- /.service__img -->
+          <div class="service__content">
+            <h4 class="service__title">{{ industry.title }}</h4>
+            <p class="service__desc">{{ industry.description|truncatewords:20 }}</p>
+            <a href="{% url 'industry_detail' industry.id %}" class="btn btn__primary">
+              <span>Read More</span>
+              <i class="icon-arrow-right"></i>
+            </a>
+          </div><!-- /.service-content -->
+        </div><!-- /.service-item -->
+      </div><!-- /.col-lg-4 -->
+      {% empty %}
+      <div class="col-12 text-center mt-50 mb-50">
+        <p>No industries available.</p>
+      </div>
+      {% endfor %}
+    </div><!-- /.row -->
+    <div class="row mb-50">
+      <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+        <nav class="pagination-area">
+          <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page=1"><i class="fas fa-angle-double-left"></i></a></li>
+            <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-angle-left"></i></a>
+            </li>
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <li><a class="current" href="?page={{ num }}">{{ num }}</a></li>
+            {% else %}
+            <li><a href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}"><i class="fas fa-angle-right"></i></a></li>
+            <li><a href="?page={{ page_obj.paginator.num_pages }}"><i class="fas fa-angle-double-right"></i></a></li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div><!-- /.container -->
+</section>
+{% endblock %}

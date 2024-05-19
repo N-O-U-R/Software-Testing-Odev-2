@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="add-industry">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-wrapper">
+                    <h2 class="text-center">Add New Industry</h2>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn__primary btn__block">Submit</button>
+                    </form>
+                </div><!-- /.form-wrapper -->
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
